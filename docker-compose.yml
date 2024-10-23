@@ -1,0 +1,16 @@
+services:
+  db:
+    image: postgres:15.4
+    hostname: postgresql
+    restart: always
+    environment:
+      POSTGRES_PASSWORD: 123456
+      POSTGRES_DB: e-commerce
+      POSTGRES_USER: web_master
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+
+volumes:
+  pgdata:
