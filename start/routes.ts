@@ -6,6 +6,10 @@ import router from '@adonisjs/core/services/router'
 const UsersController =()=>import('#controllers/user_controller')
 const ProductsController = () =>import('#controllers/product_controller')
 
+router.get('/', async ({ view }) => {
+    return view.render('welcome')
+})
+
 router.group(() => {
     router.get('/', [UsersController, 'index']).as('lista')
     router.get('/:id', [UsersController, 'show']).where('id', router.matchers.number()).as('show')
