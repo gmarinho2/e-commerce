@@ -22,6 +22,10 @@ export default class UsersController {
     return response.json(added)
   }
 
+  async create({ view }: HttpContext) {
+    return view.render('pages/users/create')
+  }
+
   async update({params, request, response}: HttpContext){
     const data = request.body()
     const user = await User.findBy({id: params.id})

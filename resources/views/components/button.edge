@@ -1,0 +1,8 @@
+@let(className = 'inline-flex items-center justify-center rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:border-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2')
+
+<button
+  class="{{ className }} {{ $props.class ?? '' }}"
+  {{ $props.except(['class', 'label']).toAttrs() }}
+>
+  {{ $props.label ?? 'Button' }}
+</button>
