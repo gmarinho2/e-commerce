@@ -24,7 +24,7 @@ router.get('/login', [AuthController, 'create']).as('auth.create')
 // router.get('/logout', [AuthController, 'destroy']).as('auth.destroy') //fazer
 
 router.get('/user', [UsersController, 'create']).as('users.create')
-// router.post('/user', [UsersController, 'store']).as('users.store')
+router.post('/user', [UsersController, 'add']).as('users.store')
 
 router.get('/products', [ProductsController, 'index']).as('products.index')
 router.get('/products/new', [ProductsController, 'create']).as('products.create')
