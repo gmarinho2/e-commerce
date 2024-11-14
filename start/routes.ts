@@ -19,19 +19,25 @@ const AuthController = () => import('#controllers/auth_controller')
 
 router.on('/').render('pages/home/show').as('home.show')
 
+
 router.get('/login', [AuthController, 'create']).as('auth.create')
 // router.post('/login', [AuthController, 'store']).as('auth.store') //fazer
 // router.get('/logout', [AuthController, 'destroy']).as('auth.destroy') //fazer
 
-router.get('/user', [UsersController, 'create']).as('users.create')
-router.post('/user', [UsersController, 'add']).as('users.store')
+router.group(()=>{
+    router.get('/', [UsersController, 'create']).as('create')
+    router.post('/', [UsersController, 'add']).as('store')
+}).prefix('users').as('users')
 
-router.get('/products', [ProductsController, 'index']).as('products.index')
-router.get('/products/new', [ProductsController, 'create']).as('products.create')
-router.get('/products/:id', [ProductsController, 'show']).as('products.show')
-router.post('/products', [ProductsController, 'store']).as('products.store')
-router.delete('/products/:id', [ProductsController, 'destroy']).as('products.destroy')
-router.patch('/products/:id', [ProductsController, 'patch']).as('products.patch')
+
+router.group(()=>{
+    router.get('/', [ProductsController, 'index']).as('index')
+    router.get('/new', [ProductsController, 'create']).as('create')
+    router.get('/:id', [ProductsController, 'show']).as('show')
+    router.post('/', [ProductsController, 'store']).as('store')
+    router.delete('/:id', [ProductsController, 'destroy']).as('destroy')
+    router.patch('/:id', [ProductsController, 'patch']).as('patch')
+}).prefix('products').as('products')
 
 router.get('/categories/:id', [CategoryController, 'show']).as('categories.show')
 
