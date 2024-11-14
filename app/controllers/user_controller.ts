@@ -18,13 +18,12 @@ export default class UsersController {
 
   async add({ request, response }: HttpContext) { //validar ainda
     const { password, password_confirm, ...userData } = request.body()
-    
     const added = await User.create({
       ...userData,
       password,
     })
 
-    return response.json(added)
+    return response.redirect().toRoute('auth.create')
   }
 
   async create({ view }: HttpContext) {

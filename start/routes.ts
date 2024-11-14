@@ -1,4 +1,5 @@
 import router from '@adonisjs/core/services/router'
+import { middleware } from './kernel.js'
 
 //lazy import: só vai importar ao ser utilizado. é uma promise? 
 //vantagem: diminui a sobrecarga de operações na inicialização do sistema
@@ -21,7 +22,7 @@ router.on('/').render('pages/home/show').as('home.show')
 
 
 router.get('/login', [AuthController, 'create']).as('auth.create')
-// router.post('/login', [AuthController, 'store']).as('auth.store') //fazer
+router.post('/login', [AuthController, 'store']).as('auth.store') //fazer
 // router.get('/logout', [AuthController, 'destroy']).as('auth.destroy') //fazer
 
 router.group(()=>{
@@ -37,24 +38,6 @@ router.group(()=>{
     router.post('/', [ProductsController, 'store']).as('store')
     router.delete('/:id', [ProductsController, 'destroy']).as('destroy')
     router.patch('/:id', [ProductsController, 'patch']).as('patch')
-}).prefix('products').as('products')
+}).prefix('products').as('products').use(middleware.auth())
 
 router.get('/categories/:id', [CategoryController, 'show']).as('categories.show')
-
-// router.group(() => {
-//     router.get('/', [UsersController, 'index']).as('lista')
-//     router.get('/:id', [UsersController, 'show']).where('id', router.matchers.number()).as('show')
-
-//     router.post('/', [UsersController, 'add']).as('adiciona')
-//     router.put('/:id', [UsersController, 'update']).where('id', router.matchers.number()).as('atualiza')
-//     router.delete('/:id', [UsersController, 'remove']).where('id', router.matchers.number()).as('deleta.user')
-// }).prefix('users').as('users')
-
-// router.group(() => {
-//     router.get('/', [ProductsController, 'index']).as('lista.produtos')
-//     router.get('/:id', [ProductsController, 'show']).where('id', router.matchers.number()).as('show.produto')
-
-//     router.post('/', [ProductsController, 'add']).as('adiciona')
-//     router.put('/:id', [ProductsController, 'update']).where('id', router.matchers.number()).as('atualiza')
-//     router.delete('/:id', [ProductsController, 'remove']).where('id', router.matchers.number()).as('deleta.produto')
-// }).prefix('products').as('products')
