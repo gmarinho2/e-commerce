@@ -26,21 +26,32 @@ export default class UsersController {
     return response.redirect().toRoute('auth.create')
   }
 
+  async edit({ params, response, view }: HttpContext) {
+
+    const user = await User.findBy({ id: params.id })
+
+    if (!user) {
+      return response.status(404)
+    }
+
+    return view.render('pages/users/edit', { user })
+  }
+  
+
   async create({ view }: HttpContext) {
     return view.render('pages/users/create')
   }
 
   async update({params, request, response}: HttpContext){
-    const data = request.body()
-    const user = await User.findBy({id: params.id})
-    if (!user) {
-        return response.status(404)
-    }
 
-    user.merge(data)
-    await user.save()
-
-    return user
+    const data = request.only(['name', 'email']);
+    console.log(data)
+    const user = await User.findOrFail(params.id);
+    
+    user.merge(data);
+    await user.save(); 
+  
+    return response.redirect('/products');
   }
 
   async remove({params, response}: HttpContext){

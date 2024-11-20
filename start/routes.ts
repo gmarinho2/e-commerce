@@ -1,5 +1,6 @@
 import router from '@adonisjs/core/services/router'
 import { middleware } from './kernel.js'
+import { args } from '@adonisjs/core/ace'
 
 //lazy import: só vai importar ao ser utilizado. é uma promise? 
 //vantagem: diminui a sobrecarga de operações na inicialização do sistema
@@ -25,12 +26,11 @@ router.get('/login', [AuthController, 'create']).as('auth.create')
 router.post('/login', [AuthController, 'store']).as('auth.store') //fazer
 // router.get('/logout', [AuthController, 'destroy']).as('auth.destroy') //fazer
 
-router.group(()=>{
-    router.get('/', [UsersController, 'create']).as('create')
-    router.post('/', [UsersController, 'add']).as('store')
-    router.get('/:id',[UsersController, 'show']).where('id', router.matchers.number()).as('show').use(middleware.auth())
-    
-}).prefix('users').as('users')
+router.group(() => {
+    router.get('/:id/edit', [UsersController, 'edit']).where('id', router.matchers.number()).as('edit')
+    router.post('/:id', [UsersController, 'update']).where('id', router.matchers.number()).as('update') //put na teoria mas form nao aceita entao eh push
+    router.get('/:id', [UsersController, 'show']).where('id', router.matchers.number()).as('show')
+  }).prefix('users').as('users').use(middleware.auth())
 
 
 router.group(()=>{

@@ -3,6 +3,7 @@ import type { HttpContext } from '@adonisjs/core/http'
 import { createAuthValidator } from '#validators/auth'
 
 export default class AuthController {
+  
   async create({ view }: HttpContext) {
     return view.render('pages/auth/create')
   }
