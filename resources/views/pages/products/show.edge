@@ -1,13 +1,99 @@
 @layouts.app()
-  <div>
-    <div class="bg-slate-200">
-      <p>
-      Nome:
-      {{ product.name }}
-      </p>
+<div id="webcrumbs">
+  <div class="w-[1100px] bg-white rounded-lg p-6 shadow-lg flex gap-8">
+    <!-- Left Side: Image of T-Shirt -->
+    <div class="flex-1">
+      <img
+        src="https://tools-api.webcrumbs.org/image-placeholder/500/500/products/1"
+        alt="T-Shirt"
+        class="w-full h-full object-cover"
+      />
     </div>
-    <div>
-      categoria {{ product.category.name }}
+
+    <!-- Right Side: Product Details -->
+    <div class="w-[500px]">
+      <p class="text-sm text-gray-500">Início / {{product.name}}</p>
+
+      <h1 class="text-2xl font-bold text-neutral-900 mt-4">
+        {{product.name}}
+      </h1>
+
+      <div class="text-primary">
+        <span class="material-symbols-outlined text-neutral-400">star</span>
+        <span class="material-symbols-outlined text-neutral-400">star</span>
+        <span class="material-symbols-outlined text-neutral-400">star</span>
+        <span class="material-symbols-outlined text-neutral-400">star</span>
+        <span class="material-symbols-outlined text-neutral-400">star</span>
+        <a href="#" class="ml-2 text-sm text-green-600">Seja o primeiro a avaliar</a>
+      </div>
+
+      <p class="text-sm text-neutral-600 mt-2">
+        {{product.description}}
+      </p>
+
+      <p class="text-xl text-primary-900 font-bold mt-4">R$ {{product.price}}</p>
+      <p class="text-sm text-neutral-500">implementar parcelamento</p>
+
+      <div class="flex mt-4 text-primary-600 gap-4">
+        <a href="#" class="flex items-center gap-2">
+          <i class="material-symbols-outlined">smartphone</i> Provador Virtual
+        </a>
+        <a href="#" class="flex items-center gap-2">
+          <i class="material-symbols-outlined">straighten</i> Tabela de Medidas
+        </a>
+      </div>
+
+      <div class="mt-6">
+        <p class="font-bold">Tamanhos</p>
+        <div class="flex flex-wrap gap-2 mt-2">
+          @each(size in ['PP', 'P', 'M', 'G', 'GG', 'XGG'])
+          <button
+            class="px-4 py-2 rounded-md border border-neutral-300 text-neutral-600 text-sm hover:bg-neutral-100"
+          >
+            {{ size }}
+          </button>
+          @endeach
+        </div>
+      </div>
+
+      <div class="mt-6">
+        <p class="font-bold">Cores</p>
+        <div class="flex gap-4 mt-2">
+          <img
+            src="https://tools-api.webcrumbs.org/image-placeholder/60/60/products/1"
+            alt="Color 1"
+            class="w-[60px] h-[60px] object-cover"
+          />
+          <img
+            src="https://tools-api.webcrumbs.org/image-placeholder/60/60/products/2"
+            alt="Color 2"
+            class="w-[60px] h-[60px] object-cover"
+          />
+          <img
+            src="https://tools-api.webcrumbs.org/image-placeholder/60/60/products/3"
+            alt="Color 3"
+            class="w-[60px] h-[60px] object-cover"
+          />
+        </div>
+      </div>
+      <div class="mt-8">
+        <button class="bg-primary-600 hover:bg-primary-700 text-primary-50 font-bold rounded-md w-full py-2">
+          Adicionar a Sacola
+        </button>
+      </div>
+
+      <div class="mt-4 flex gap-4 items-center">
+        <input
+          type="text"
+          placeholder="Digite seu CEP"
+          class="w-2/3 px-4 py-2 border border-neutral-300 rounded-md"
+        />
+        <button class="bg-neutral-200 hover:bg-neutral-300 px-4 py-2 rounded-md">
+          Calcular frete
+        </button>
+      </div>
     </div>
   </div>
+</div>
+
 @end

@@ -11,7 +11,8 @@
     "test": "node ace test",
     "lint": "eslint .",
     "format": "prettier --write .",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "build:css": "npx tailwindcss -i ./resources/css/app.css -o ./public/css/app.css --watch"
   },
   "imports": {
     "#controllers/*": "./app/controllers/*.js",

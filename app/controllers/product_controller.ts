@@ -6,7 +6,7 @@ import Category from "#models/category"
 export default class ProductsController {
     async index({ view, request }: HttpContext) {
       const page = request.input('page', 1)
-      const limit = 10
+      const max_size = 10
   
       const payload = request.only(['name'])
   
@@ -16,7 +16,7 @@ export default class ProductsController {
         query.where('name', 'like', `%${payload.name}%`)
       }
   
-      const products = await query.paginate(page, limit)
+      const products = await query.paginate(page, max_size)
   
       return view.render('pages/products/index', { products })
     }

@@ -18,7 +18,7 @@ const AuthController = () => import('#controllers/auth_controller')
 //rotas do produto
 // router.resource('products', 'product_controller')
 
-router.on('/').render('pages/home/show').as('home.show')
+router.on('/').render('pages/home/show').as('home.show').use(middleware.auth())
 
 
 router.get('/login', [AuthController, 'create']).as('auth.create')
@@ -28,6 +28,7 @@ router.post('/login', [AuthController, 'store']).as('auth.store') //fazer
 router.group(()=>{
     router.get('/', [UsersController, 'create']).as('create')
     router.post('/', [UsersController, 'add']).as('store')
+    
 }).prefix('users').as('users')
 
 
@@ -38,6 +39,7 @@ router.group(()=>{
     router.post('/', [ProductsController, 'store']).as('store')
     router.delete('/:id', [ProductsController, 'destroy']).as('destroy')
     router.patch('/:id', [ProductsController, 'patch']).as('patch')
+
 }).prefix('products').as('products').use(middleware.auth())
 
 router.get('/categories/:id', [CategoryController, 'show']).as('categories.show')
