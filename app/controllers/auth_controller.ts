@@ -1,9 +1,9 @@
 import User from '#models/user'
-import type { HttpContext } from '@adonisjs/core/http'
+import { Redirect, type HttpContext } from '@adonisjs/core/http'
 import { createAuthValidator } from '#validators/auth'
 
 export default class AuthController {
-  
+
   async create({ view }: HttpContext) {
     return view.render('pages/auth/create')
   }
@@ -24,4 +24,12 @@ export default class AuthController {
     return response.redirect().toRoute('products.index')
 
   }
+
+  async destroy({ auth, response }: HttpContext) {
+
+    await auth.use('web').logout()
+
+    return response.redirect().toRoute('home.show')
+  }
+  
 }

@@ -21,10 +21,9 @@ const AuthController = () => import('#controllers/auth_controller')
 
 router.on('/').render('pages/home/show').as('home.show').use(middleware.auth())
 
-
 router.get('/login', [AuthController, 'create']).as('auth.create')
 router.post('/login', [AuthController, 'store']).as('auth.store') //fazer
-// router.get('/logout', [AuthController, 'destroy']).as('auth.destroy') //fazer
+router.get('/logout', [AuthController, 'destroy']).as('auth.destroy') //fazer
 
 router.group(() => {
     router.get('/:id/edit', [UsersController, 'edit']).where('id', router.matchers.number()).as('edit')
