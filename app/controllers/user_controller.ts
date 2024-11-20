@@ -8,12 +8,12 @@ export default class UsersController {
     return users
   }
 
-  async show({ params, response }: HttpContext) {
+  async show({ params, response, view }: HttpContext) {
     const user = await User.findBy({ id: params.id })
     if (!user) {
       return response.status(404)
     }
-    return user
+    return view.render('pages/users/show', { user })
   }
 
   async add({ request, response }: HttpContext) { //validar ainda

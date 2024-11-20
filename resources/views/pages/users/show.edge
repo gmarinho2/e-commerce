@@ -1,0 +1,29 @@
+@layouts.app()
+<div class='grid grid-cols-1 gap-6'>
+    <div 
+      class='bg-neutral-100 rounded-md overflow-hidden block hover:shadow-md transition-shadow duration-200'
+    >
+      <div class='h-[250px] flex items-center justify-center bg-neutral-200'>
+        <img
+          src='https://via.placeholder.com/150'
+          alt='{{ user.fullName }}'
+          class='w-40 h-40 rounded-full object-cover'
+        />
+      </div>
+      <div class='p-4'>
+        <h2 class="text-2xl font-semibold text-neutral-900 text-center mb-2">
+          {{ user.fullName }}
+        </h2>
+        <p class="text-lg text-neutral-700 text-center">
+          <strong>Email:</strong> {{ user.email }}
+        </p>
+        <p class="text-lg text-neutral-700 text-center">
+          <strong>Data de Criação:</strong> {{ user.createdAt }}
+        </p>
+        <p class="text-lg text-neutral-700 text-center">
+          <strong>Última Atualização:</strong> {{ user.updatedAt }}
+        </p>
+      </div>
+    </div>
+  </div>
+@end

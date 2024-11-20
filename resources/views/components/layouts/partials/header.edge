@@ -28,15 +28,20 @@
             </g>
           </svg>
         </a>
+
         <div class="flex flex-col items-start justify-center w-full space-x-6 text-center lg:space-x-8 md:w-2/3 md:mt-0 md:flex-row md:items-center">
           <a href="{{ route('products.index') }}" class="inline-block w-full py-2 mx-0 ml-6 font-medium text-left text-black md:ml-0 md:w-auto md:px-0 md:mx-2 lg:mx-3 md:text-center">
             Produtos
           </a>
         </div>
-        
+
         <div class="flex flex-col items-start justify-end w-full pt-4 md:items-center md:w-1/3 md:flex-row md:py-0">
           @if(auth.isAuthenticated)
-            <p>Usuário: {{ auth.user?.email }}</p>
+          <a 
+            href='/users/{{ auth.user.id }}' 
+            class='bg-neutral-100 rounded-md overflow-hidden block hover:shadow-md transition-shadow duration-200'>
+              <p>Usuário: {{ auth.user?.email }}</p>
+          </a> 
           @else
             @button({
               href: route('users.create'),
