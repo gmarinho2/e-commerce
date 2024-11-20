@@ -44,14 +44,13 @@ export default class UsersController {
 
   async update({params, request, response}: HttpContext){
 
-    const data = request.only(['name', 'email']);
-    console.log(data)
+    const data = request.only(['name', 'email', 'phone']);
     const user = await User.findOrFail(params.id);
     
     user.merge(data);
-    await user.save(); 
+    await user.save();
   
-    return response.redirect('/products');
+    return response.redirect('/users/' + user.id);
   }
 
   async remove({params, response}: HttpContext){

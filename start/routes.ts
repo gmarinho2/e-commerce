@@ -26,10 +26,12 @@ router.post('/login', [AuthController, 'store']).as('auth.store') //fazer
 router.get('/logout', [AuthController, 'destroy']).as('auth.destroy') //fazer
 
 router.group(() => {
-    router.get('/:id/edit', [UsersController, 'edit']).where('id', router.matchers.number()).as('edit')
-    router.post('/:id', [UsersController, 'update']).where('id', router.matchers.number()).as('update') //put na teoria mas form nao aceita entao eh push
-    router.get('/:id', [UsersController, 'show']).where('id', router.matchers.number()).as('show')
-  }).prefix('users').as('users').use(middleware.auth())
+    router.get('/:id/edit', [UsersController, 'edit']).where('id', router.matchers.number()).use(middleware.auth()).as('edit')
+    router.post('/:id', [UsersController, 'update']).where('id', router.matchers.number()).use(middleware.auth()).as('update') //put na teoria mas form nao aceita entao eh push
+    router.get('/:id', [UsersController, 'show']).where('id', router.matchers.number()).use(middleware.auth()).as('show')
+    router.post('/', [UsersController, 'add']).as('store')
+    router.get('/new', [UsersController, 'create']).as('create')
+  }).prefix('users').as('users')
 
 
 router.group(()=>{

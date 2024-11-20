@@ -31,5 +31,4 @@ export default class AuthController {
 
     return response.redirect().toRoute('home.show')
   }
-  
 }
