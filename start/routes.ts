@@ -36,9 +36,9 @@ router.group(() => {
 
 
 router.group(()=>{
-    router.get('/', [ProductsController, 'index']).as('index')
+    router.get('/', [ProductsController, 'index']).use(middleware.auth()).as('index')
     router.get('/new', [ProductsController, 'create']).use(middleware.auth()).as('create')
-    router.get('/:id', [ProductsController, 'show']).where('id', router.matchers.number()).as('show')
+    router.get('/:id', [ProductsController, 'show']).where('id', router.matchers.number()).use(middleware.auth()).as('show')
     router.post('/', [ProductsController, 'store']).use(middleware.auth()).as('store')
     router.delete('/:id', [ProductsController, 'destroy']).where('id', router.matchers.number()).use(middleware.auth()).as('destroy')
     router.patch('/:id', [ProductsController, 'patch']).where('id', router.matchers.number()).use(middleware.auth()).as('patch')
