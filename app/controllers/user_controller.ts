@@ -44,7 +44,7 @@ export default class UsersController {
 
   async update({params, request, response}: HttpContext){
 
-    const data = request.only(['name', 'email', 'phone']);
+    const data = request.only(['fullName', 'email', 'phone']);
     const user = await User.findOrFail(params.id);
     
     user.merge(data);
