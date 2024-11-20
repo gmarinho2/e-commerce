@@ -1,50 +1,84 @@
 @layouts.app()
-  @form({ action: route('products.store') })
-    <div>
-      <label for="name">
-        Nome do Produto
-      </label>
-      @!input({
-        name: 'name',
-        type: 'text'
+<div class="flex min-h-[80vh] flex-col justify-center py-12 sm:px-6 lg:px-8">
+  <div class="text-center sm:mx-auto sm:w-full sm:max-w-md">
+    <h1 class="text-3xl font-bold text-gray-900">
+      Criar Produto
+    </h1>
+  </div>
+  <div class="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
+    <div class="bg-white px-4 pb-4 pt-8 sm:rounded-lg sm:px-10 sm:pb-6">
+      @form({
+        action: route('products.store'), 
+        method: 'POST',
+        class: 'space-y-6',
       })
-    </div>
+        <div>
+          <label for="productName" class="block text-sm font-medium text-gray-700">
+            Nome do Produto
+          </label>
+          <div class="mt-1">
+            @!input({
+              type: 'text',
+              name: 'name',
+              required: true,
+              placeholder: 'Digite o nome do produto',
+            })
+          </div>
+        </div>
+        <div>
+          <label for="productPrice" class="block text-sm font-medium text-gray-700">
+            Preço
+          </label>
+          <div class="mt-1">
+            @!input({
+              type: 'text',
+              name: 'price',
+              required: true,
+              placeholder: 'Digite o preço do produto',
+            })
+          </div>
+        </div>
+        <div>
+          <label for="description" class="block text-sm font-medium text-gray-700">
+            Descrição
+          </label>
+          <div class="mt-1">
+            @!input({
+              type: 'text',
+              name: 'description',
+              required: true,
+              placeholder: 'Breve descrição',
+            })
+          </div>
+        </div>
 
-    <div>
-      <label for="pricer">
-        Preço
-      </label>
-      @!input({
-        name: 'price',
-        type: 'text'
-      })
-    </div>
 
-    <div>
-      <label for="description">
-        Descrição
-      </label>
-      @!input({
-        name: 'description',
-        type: 'text'
-      })
-    </div>
+        <div>
+          <label for="categoryId" class="block text-sm font-medium text-gray-700">
+            Categoria
+          </label>
+          <div class="mt-1">
+            @!input({
+              type: 'number',  <!-- Supondo que seja um número para o ID -->
+              name: 'categoryId',  <!-- Refere-se ao campo no modelo -->
+              required: true,
+              placeholder: 'Informe o ID da categoria',
+            })
+          </div>
+        </div>
+        
 
-    <div>
-      <label for="categoryId">
-        Descrição
-      </label>
-      <select name="categoryId">
-        @each(category in categories)
-          <option value="{{ category.id }}">{{ category.name }}</option>
-        @end
-      </select>
-    </div>
 
-    @button({
-      type: 'submit'
-    })
-      Salvar
-    @end
-  @end
+        <div>
+          @button({
+            type: 'submit',
+            class: 'w-full',
+          })
+            Criar Produto
+          @end
+        </div>
+      @end
+    </div>
+  </div>
+</div>
 @end
