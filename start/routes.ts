@@ -19,7 +19,8 @@ const AuthController = () => import('#controllers/auth_controller')
 //rotas do produto
 // router.resource('products', 'product_controller')
 
-router.on('/').render('pages/home/show').as('home.show').use(middleware.auth())
+router.on('/').render('pages/home/show').as('home.show')
+// router.on('/').render('pages/home/show').as('home.show').use(middleware.auth())
 
 router.get('/login', [AuthController, 'create']).as('auth.create')
 router.post('/login', [AuthController, 'store']).as('auth.store') //fazer
@@ -36,12 +37,12 @@ router.group(() => {
 
 router.group(()=>{
     router.get('/', [ProductsController, 'index']).as('index')
-    router.get('/new', [ProductsController, 'create']).as('create')
+    router.get('/new', [ProductsController, 'create']).use(middleware.auth()).as('create')
     router.get('/:id', [ProductsController, 'show']).where('id', router.matchers.number()).as('show')
-    router.post('/', [ProductsController, 'store']).as('store')
-    router.delete('/:id', [ProductsController, 'destroy']).where('id', router.matchers.number()).as('destroy')
-    router.patch('/:id', [ProductsController, 'patch']).where('id', router.matchers.number()).as('patch')
+    router.post('/', [ProductsController, 'store']).use(middleware.auth()).as('store')
+    router.delete('/:id', [ProductsController, 'destroy']).where('id', router.matchers.number()).use(middleware.auth()).as('destroy')
+    router.patch('/:id', [ProductsController, 'patch']).where('id', router.matchers.number()).use(middleware.auth()).as('patch')
 
-}).prefix('products').as('products').use(middleware.auth())
+}).prefix('products').as('products')
 
 router.get('/categories/:id', [CategoryController, 'show']).as('categories.show')
