@@ -1,14 +1,14 @@
-<nav class="relative z-50 h-24 select-none">
-  <div class="container relative flex flex-wrap items-center justify-between h-24 mx-auto overflow-hidden font-medium border-b border-gray-200 md:overflow-visible lg:justify-center sm:px-4 md:px-2 lg:px-0">
+<nav class="relative z-50 h-24 select-none bg-[#0FBC5A]">
+  <div class="container relative flex flex-wrap items-center justify-between h-24 mx-auto overflow-hidden font-medium border-b border-green-600 md:overflow-visible lg:justify-center sm:px-4 md:px-2 lg:px-0">
     <div class="flex items-center justify-start w-1/4 h-full pr-4">
-      <a href="{{ route('home.show') }}" class="flex items-center py-4 space-x-2 font-semibold text-gray-900 md:py-0">
+      <a href="{{ route('home.show') }}" class="flex items-center py-4 space-x-2 font-semibold text-white md:py-0">
         <span>E-commerce</span>
       </a>
     </div>
     <div
-      class="top-0 left-0 items-start hidden w-full h-full p-4 text-sm bg-gray-900 bg-opacity-50 md:items-center md:w-3/4 lg:text-base md:bg-transparent md:p-0 md:flex">
-      <div class="flex-col w-full h-auto overflow-hidden bg-white rounded-lg md:bg-transparent md:overflow-visible md:rounded-none md:relative md:flex md:flex-row">
-        <a href="#_" class="inline-flex items-center w-auto h-16 px-6 text-xl font-black leading-none text-gray-900 md:hidden">
+      class="top-0 left-0 items-start hidden w-full h-full p-4 text-sm bg-green-700 bg-opacity-50 md:items-center md:w-3/4 lg:text-base md:bg-transparent md:p-0 md:flex">
+      <div class="flex-col w-full h-auto overflow-hidden bg-[#0FBC5A] rounded-lg md:bg-transparent md:overflow-visible md:rounded-none md:relative md:flex md:flex-row">
+        <a href="#_" class="inline-flex items-center w-auto h-16 px-6 text-xl font-black leading-none text-white md:hidden">
           <svg class="w-auto h-5" viewBox="0 0 355 99" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
             <defs>
               <path
@@ -30,7 +30,7 @@
         </a>
 
         <div class="flex flex-col items-start justify-center w-full space-x-6 text-center lg:space-x-8 md:w-2/3 md:mt-0 md:flex-row md:items-center">
-          <a href="{{ route('products.index') }}" class="inline-block w-full py-2 mx-0 ml-6 font-medium text-left text-black md:ml-0 md:w-auto md:px-0 md:mx-2 lg:mx-3 md:text-center">
+          <a href="{{ route('products.index') }}" class="inline-block w-full py-2 mx-0 ml-6 font-medium text-left text-white md:ml-0 md:w-auto md:px-0 md:mx-2 lg:mx-3 md:text-center">
             Produtos
           </a>
         </div>
@@ -39,7 +39,7 @@
           @if(auth.isAuthenticated)
           <a 
             href='/users/{{ auth.user.id }}' 
-            class='bg-neutral-100 rounded-md overflow-hidden block hover:shadow-md transition-shadow duration-200'>
+            class='bg-white text-[#0FBC5A] rounded-md overflow-hidden block hover:shadow-md transition-shadow duration-200'>
               <p>Usuário: {{ auth.user?.email }}</p>
           </a> 
           @else
@@ -59,8 +59,8 @@
         
       </div>
     </div>
-    <div class="absolute right-0 flex flex-col items-center justify-center w-10 h-10 bg-white rounded-full cursor-pointer md:hidden hover:bg-gray-100">
-      @!svg('heroicons:bars-3-16-solid', { class: 'w-6 h-6 text-gray-700' })
+    <div class="absolute right-0 flex flex-col items-center justify-center w-10 h-10 bg-white rounded-full cursor-pointer md:hidden hover:bg-green-500">
+      @!svg('heroicons:bars-3-16-solid', { class: 'w-6 h-6 text-[#0FBC5A]' })
     </div>
   </div>
 </nav>
