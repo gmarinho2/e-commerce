@@ -2,7 +2,7 @@
   <div class="container relative flex flex-wrap items-center justify-between h-24 mx-auto overflow-hidden font-medium border-b border-green-600 md:overflow-visible lg:justify-center sm:px-4 md:px-2 lg:px-0">
     <div class="flex items-center justify-start w-1/4 h-full pr-4">
       <a href="{{ route('home.show') }}" class="flex items-center py-4 space-x-2 font-semibold text-white md:py-0">
-        <span>E-commerce</span>
+        <span>Sem Clubismo Store</span>
       </a>
     </div>
     <div
@@ -30,7 +30,9 @@
         </a>
 
         <div class="flex flex-col items-start justify-center w-full space-x-6 text-center lg:space-x-8 md:w-2/3 md:mt-0 md:flex-row md:items-center">
-          <a href="{{ route('products.index') }}" class="inline-block w-full py-2 mx-0 ml-6 font-medium text-left text-white md:ml-0 md:w-auto md:px-0 md:mx-2 lg:mx-3 md:text-center">
+          <a href="{{ route('guest.index') }}" 
+            class="inline-block w-full py-2 mx-0 ml-6 font-medium text-left text-white md:ml-0 md:w-auto md:px-0 md:mx-2 lg:mx-3 md:text-center"
+          >
             Produtos
           </a>
         </div>
@@ -41,14 +43,15 @@
             <!-- Botão Usuário -->
             <a 
               href='/users/{{ auth.user.id }}' 
-              class='flex items-center justify-center bg-white text-[#0FBC5A] rounded-md overflow-hidden px-4 py-2 w-full max-w-[200px] hover:shadow-md transition-shadow duration-200 text-center'>
-              Usuário: {{ auth.user?.email }}
+              class='flex items-center justify-center bg-white text-[#0FBC5A] rounded-md overflow-hidden px-4 py-2 
+              w-full max-w-[200px] hover:shadow-md transition-shadow duration-200 text-center'>
+              {{ auth.user?.fullName }}
             </a> 
         
             <!-- Botão Logout -->
             @button({
               href: route('auth.destroy'),
-              variant: 'ghost'
+              variant: 'destructive'
             })
               Logout
             @end
@@ -56,12 +59,13 @@
           @else
             @button({
               href: route('users.create'),
-              variant: 'ghost'
+              variant: 'outline'
             })
               Sign In
             @end
             @button({
-              href: route('auth.create')
+              href: route('auth.create'),
+              variant: 'default'
             })
               Login
             @end
@@ -78,35 +82,3 @@
 </nav>
 
 
-
-<!--
-  
-  
-
-  <div class='w-[1200px] bg-white rounded-lg shadow-lg min-h-[600px] p-8'>  <div class='mb-8 relative'>
-  <nav class="left-0 right-0 bg-primary-500 p-4 text-primary-50">
-    <div class="w-[1200px] mx-auto flex items-center justify-between">
-      <h1 class="text-2xl font-title">Product Store</h1>
-      <div class="flex items-center gap-4">
-        <a href="#" class="hover:underline">Home</a>
-        <a href="#" class="hover:underline">Products</a>
-        <a href="#" class="hover:underline">Contact</a>
-      </div>
-      <div class="flex items-center ml-4 relative">
-        <input
-          type="text"
-          placeholder="Search products"
-          class="w-full p-2 text-neutral-950 border border-neutral-300 rounded-md"
-        />
-        <button class="ml-2 bg-primary-500 text-primary-50 p-3 rounded-md">
-          <span class='material-symbols-outlined'>search</span>
-        </button>
-      </div>
-    </div>
-  </nav>
-</div>
-  
-  
-  
-  
-  --->

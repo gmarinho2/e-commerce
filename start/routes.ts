@@ -35,6 +35,12 @@ router.group(() => {
   }).prefix('users').as('users')
 
 
+
+router.group(()=>{
+    router.get('/', [ProductsController, 'index']).as('index')
+    router.get('/:id', [ProductsController, 'show']).where('id', router.matchers.number()).as('show')
+}).prefix('guest/products').as('guest')
+
 router.group(()=>{
     router.get('/', [ProductsController, 'index']).use(middleware.auth()).as('index')
     router.get('/new', [ProductsController, 'create']).use(middleware.auth()).as('create')
