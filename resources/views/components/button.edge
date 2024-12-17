@@ -3,15 +3,18 @@
   {
     variants: {
       variant: {
-        default: 'bg-green-500 text-white hover:bg-green-500/90',
+        default: 'bg-green-800 text-white hover:bg-green-500/90 shadow-lg',
+        
+        default_header:'bg-white text-[#0FBC5A] px-3 py-2 rounded-md shadow-md flex items-center space-x-2 hover:bg-green-800 hover:text-white hover:shadow-2xl' ,
+
         destructive:
-          'bg-red-500 text-white hover:bg-red-500/90',
+          'bg-red-600 text-white hover:bg-red-500/90 shadow-2xl',
         outline:
-          'border border-input bg-white hover:bg-accent hover:text-white',
+          'border border-input bg-white hover:bg-accent hover:text-white shadow-2xl',
         secondary:
-          'bg-secondary text-secondary-foreground hover:bg-secondary/80',
-        ghost: 'hover:bg-accent hover:text-accent-foreground',
-        link: 'text-white underline-offset-4 hover:underline',
+          'bg-secondary text-secondary-foreground hover:bg-secondary/80 shadow-2xl',
+        ghost: 'hover:bg-accent hover:text-accent-foreground shadow-2xl',
+        link: 'text-white underline-offset-4 hover:underline shadow-2xl'
       },
       size: {
         default: 'h-10 px-4 py-2',

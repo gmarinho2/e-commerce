@@ -1,0 +1,21 @@
+<div 
+  id="sidebar" 
+  class="fixed top-0 left-0 w-64 h-full bg-green-800 text-white transform -translate-x-full transition-transform duration-300 z-50 shadow-lg">
+  <div class="p-4 flex justify-between items-center">
+    <h2 class="text-lg font-bold">Menu</h2>
+    @button({
+        id: 'closeSidebar',
+        class:'text-green-400 hover:text-green-800',
+        variant: 'outline'
+    })
+    <span class="material-icons-outlined">close</span>
+    @end
+
+  </div>
+  <ul class="mt-4 space-y-4">
+    <li><a href="#" class="block px-4 py-2 hover:bg-gray-700 rounded    hover:bg-white hover:text-green-600 hover:shadow-md">Início</a></li>
+    <li><a href="#" class="block px-4 py-2 hover:bg-gray-700 rounded   hover:bg-white hover:text-green-600 hover:shadow-md">Times</a></li>
+    <li><a href="#" class="block px-4 py-2 hover:bg-gray-700 rounded   hover:bg-white hover:text-green-600 hover:shadow-md">Camisas Vintage</a></li>
+    <li><a href="#" class="block px-4 py-2 hover:bg-gray-700 rounded    hover:bg-white hover:text-green-600 hover:shadow-md">Camisas Comuns</a></li>
+  </ul>
+</div>
