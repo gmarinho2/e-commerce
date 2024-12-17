@@ -14,9 +14,9 @@
       @end
 
       <!-- Título da Página -->
-      <a href="{{ route('home.show') }}" class="flex items-center py-4 space-x-2 font-semibold text-white md:py-0">
+      <div class="flex items-center py-4 space-x-2 font-semibold text-white md:py-0">
         <span>Sem Clubismo Store</span>
-      </a>
+      </div>
     </div>
 
     <div class="flex items-center justify-center shrink-0">
@@ -47,13 +47,14 @@
       
         <div class="flex space-x-2"> 
           
-      <!--  login -->
-          @button({
-            href: '/users/{{ auth.user.id }}',
-            variant: 'default_header',
-          })
-            {{ auth.user?.fullName }}
-          @end
+      <!--  nome -->
+      @button({
+        href: route('users.show', { id: auth.user.id }),
+        variant: 'default_header',
+      })
+        {{ auth.user?.fullName }}
+      @end
+      
 
           <!--  Logout -->
           @button({
