@@ -27,15 +27,19 @@
 
 
 
+
   </head>
   <body>
-    <section class="w-full px-6 pb-12 antialiased bg-white">
+    @include('components/layouts/partials/header')
+    <section class="w-full px-6 pt-6 pb-12 antialiased bg-white">
       <div class="mx-auto max-w-7xl">
-        @include('components/layouts/partials/header')
+
 
         <div>
           {{{ await $slots.main() }}}
         </div>
+
+        
       </div>
     </section>
   </body>
