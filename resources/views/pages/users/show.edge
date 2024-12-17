@@ -33,11 +33,18 @@
             Editar Usuário
           </a>
     </div>
+
+
+    @if(user.admin)
+
     <div class="flex justify-end">
       <a href='/products/new' class="bg-primary-500 text-primary-50 py-2 px-6 rounded-md">
           Criar Produto
         </a>
-  </div>
+    </div>
+
+    @endif
+
   </div>
 </div>
 @end

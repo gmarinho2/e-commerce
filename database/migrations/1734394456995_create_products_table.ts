@@ -8,9 +8,11 @@ export default class extends BaseSchema {
       table.increments('id')
 
       table.string('name')
-      table.decimal('price').notNullable()
-      table.text('description').notNullable()
+      table.decimal('price', 10, 2).notNullable()
       table.integer('category_id').unsigned().notNullable().references('id').inTable('categories').onDelete('CASCADE')
+      table.string('description')
+      table.integer('team_id').references('id').inTable('teams')
+      table.integer('stock')
 
       table.timestamp('created_at')
       table.timestamp('updated_at')

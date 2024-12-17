@@ -36,6 +36,60 @@
               })
             </div>
           </div>
+
+          <div>
+            <label for="team" class="block text-sm font-medium text-gray-700">
+              Clube do coração
+            </label>
+            <div class="mt-1">
+              @!input({
+                type: 'number',
+                name: 'team_id', <!-- Campo configurado para aceitar números -->
+                required: true,
+              })
+            </div>
+          </div>
+
+
+        <div class="flex items-center">
+          <!-- Campo oculto para garantir que o valor false seja enviado quando o checkbox não for marcado -->
+          @!input({
+            type: 'hidden',
+            name: 'admin', 
+            value: 'false', <!-- Valor falso padrão -->
+          })
+
+          <!-- Checkbox para Admin -->
+          @!input({
+            type: 'checkbox',
+            name: 'admin', 
+            id: 'adminCheckbox', 
+            class: 'h-5 w-5 text-black border-gray-300 rounded checked:bg-black checked:border-transparent focus:ring-0',
+            value: 'true', <!-- Valor enviado quando marcado -->
+          })
+
+          <label for="adminCheckbox" class="ml-2 block text-sm font-medium text-gray-700">
+            Tornar este usuário um Admin
+          </label>
+        </div>
+
+          
+          
+            
+            <!--
+          <div id="adminKeyField" class="hidden">
+            <label for="adminKey" class="block text-sm font-medium text-gray-700">
+              Chave de Administração
+            </label>
+            <div class="mt-1">
+              @!input({
+                type: 'password',
+                name: 'admin_key',
+                id: 'adminKey',
+              })
+            </div>
+          </div>
+        -->
           <div>
             <label for="password" class="block text-sm font-medium text-gray-700">Senha</label>
             <div class="mt-1">
@@ -78,4 +132,20 @@
       </div>
     </div>
   </div>
+
+  <!-- Script para exibir/esconder o campo da chave de admin -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      const adminCheckbox = document.getElementById('adminCheckbox');
+      const adminKeyField = document.getElementById('adminKeyField');
+
+      adminCheckbox.addEventListener('change', function () {
+        if (this.checked) {
+          adminKeyField.classList.remove('hidden');
+        } else {
+          adminKeyField.classList.add('hidden');
+        }
+      });
+    });
+  </script>
 @end
