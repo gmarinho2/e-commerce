@@ -29,7 +29,7 @@ export default class ProductsController {
     }
   
     async store({ request, response }: HttpContext) {
-      const payload = request.only(['name', 'price', 'description', 'categoryId'])
+      const payload = request.only(['name', 'price', 'description', 'categoryId', 'imageUrl'])
   
       const product = await Product.create(payload)
   
@@ -44,7 +44,7 @@ export default class ProductsController {
     async patch({ params, request}: HttpContext) {
       const product = await Product.findOrFail(params.id)
   
-      const payload = request.only(['name', 'price', 'description', 'categoryId'])
+      const payload = request.only(['name', 'price', 'description', 'categoryId', 'imageUrl'])
       product.merge(payload)
   
       await product.save()

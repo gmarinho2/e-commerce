@@ -32,6 +32,9 @@ export default class Product extends BaseModel {
   @column()
   declare stock: number
 
+  @column({ columnName: 'image_url' })
+  declare imageUrl: string
+
   @column.dateTime({ autoCreate: true })
   declare createdAt: DateTime
 

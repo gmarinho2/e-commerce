@@ -13,6 +13,7 @@ export default class extends BaseSchema {
       table.string('description')
       table.integer('team_id').references('id').inTable('teams')
       table.integer('stock')
+      table.text('image_url').notNullable()
 
       table.timestamp('created_at')
       table.timestamp('updated_at')
