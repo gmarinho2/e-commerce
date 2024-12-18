@@ -1,6 +1,6 @@
-// Pesos para os ajustes
-const weights = {
-    chest: 2, // Peso 2 para tórax
+
+const peso = {
+    chest: 2, 
     waist: 1,
     hip: 1,
   };
@@ -19,13 +19,11 @@ const weights = {
     const waist = parseInt(document.getElementById('waist').value, 10);
     const hip = parseInt(document.getElementById('hip').value, 10);
   
-    // Cálculo ponderado
     const weightedScore = chest * weights.chest + waist * weights.waist + hip * weights.hip;
   
-    // Determinar o tamanho baseado no range
     let recommendedSize = 'Tamanho Indefinido';
   
-    // Verificar em qual intervalo o valor calculado se encaixa
+   
     for (const range of sizeMapping) {
       if (weightedScore >= range.min && weightedScore <= range.max) {
         recommendedSize = range.size;
@@ -33,7 +31,6 @@ const weights = {
       }
     }
   
-    // Exibir o tamanho recomendado
     document.getElementById('recommendedSize').innerText = recommendedSize;
   }
   
@@ -43,6 +40,5 @@ const weights = {
     }
   });
   
-  // Inicializar tamanho recomendado
   calculateRecommendedSize();
   
