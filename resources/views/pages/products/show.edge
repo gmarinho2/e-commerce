@@ -5,11 +5,11 @@
     <div class="flex-1">
       <img src="{{ product.imageUrl }}" 
       alt='{{product.name}}'
-      class="w-full h-[300px] object-cover rounded-md" />
+      class="w-full h-full object-cover rounded-md" />
     </div>
 
     <!-- Right Side: Product Details -->
-    <div class="w-[500px]">
+    <div class="w-[500px] h-[700]" >
       <p class="text-sm text-gray-500">Início / {{product.name}}</p>
 
       <h1 class="text-2xl font-bold text-neutral-900 mt-4">
@@ -36,6 +36,8 @@
         <a href="#" class="flex items-center gap-2">
           <i class="material-symbols-outlined">smartphone</i> Provador Virtual
         </a>
+      </div>
+        <div class="flex mt-4 text-primary-600 gap-4">
         <a href="#" class="flex items-center gap-2">
           <i class="material-symbols-outlined">straighten</i> Tabela de Medidas
         </a>
@@ -54,26 +56,7 @@
         </div>
       </div>
 
-      <div class="mt-6">
-        <p class="font-bold">Cores</p>
-        <div class="flex gap-4 mt-2">
-          <img
-            src=""
-            alt="Color 1"
-            class="w-[60px] h-[60px] object-cover"
-          />
-          <img
-            src=""
-            alt="Color 2"
-            class="w-[60px] h-[60px] object-cover"
-          />
-          <img
-            src=""
-            alt="Color 3"
-            class="w-[60px] h-[60px] object-cover"
-          />
-        </div>
-      </div>
+
       <div class="mt-8">
         <button class="bg-primary-600 hover:bg-primary-700 text-primary-50 font-bold rounded-md w-full py-2">
           Adicionar a Sacola
