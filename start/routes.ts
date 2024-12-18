@@ -9,6 +9,7 @@ const CategoryController = () => import('#controllers/categories_controller')
 const UsersController = () => import('#controllers/user_controller')
 const ProductsController = () => import('#controllers/product_controller')
 const AuthController = () => import('#controllers/auth_controller')
+const CartsController = () => import('#controllers/carts_controller')
 
 // router.on('/').render('pages/home/show').as('home.show')
 
@@ -32,7 +33,7 @@ router.group(() => {
     router.get('/:id', [UsersController, 'show']).where('id', router.matchers.number()).use(middleware.auth()).as('show')
     router.post('/', [UsersController, 'add']).as('store')
     router.get('/new', [UsersController, 'create']).as('create')
-  }).prefix('users').as('users')
+}).prefix('users').as('users')
 
 
 
@@ -52,3 +53,9 @@ router.group(()=>{
 }).prefix('products').as('products')
 
 router.get('/categories/:id', [CategoryController, 'show']).as('categories.show')
+
+// router.get('/Cart', [CartsController, 'show']).as('cart.show')
+
+router.group(() => {
+    router.get('/', [CartsController, 'index']).as('index').use(middleware.auth())
+}).prefix('cart').as('cart')
