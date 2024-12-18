@@ -10,6 +10,7 @@
         @form({
           action: route('users.store'),
           method: 'POST',
+          id: 'createUserForm', <!-- Adicionado o ID para validação -->
           class: 'space-y-6',
         })
           <div>
@@ -18,7 +19,7 @@
             </label>
             <div class="mt-1">
               @!input({
-                type: 'name',
+                type: 'text', <!-- Corrigido o tipo -->
                 name: 'fullName',
                 required: true,
               })
@@ -26,13 +27,18 @@
           </div>
           <div>
             <label for="email" class="block text-sm font-medium text-gray-700">
-              Email
+              E-mail
             </label>
             <div class="mt-1">
               @!input({
                 type: 'email',
                 name: 'email',
                 required: true,
+                class: 'border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-green-500',
+                placeholder: 'exemplo@dominio.com',
+                pattern: '[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$', <!-- Regex para validação -->
+                oninvalid: "setCustomValidity('Por favor, insira um email válido.')",
+                oninput: "setCustomValidity('')",
               })
             </div>
           </div>
@@ -44,52 +50,33 @@
             <div class="mt-1">
               @!input({
                 type: 'number',
-                name: 'team_id', <!-- Campo configurado para aceitar números -->
+                name: 'team_id',
                 required: true,
               })
             </div>
           </div>
 
+          <div class="flex items-center">
+            @!input({
+              type: 'hidden',
+              name: 'admin',
+              value: 'false',
+            })
 
-        <div class="flex items-center">
-          <!-- Campo oculto para garantir que o valor false seja enviado quando o checkbox não for marcado -->
-          @!input({
-            type: 'hidden',
-            name: 'admin', 
-            value: 'false', <!-- Valor falso padrão -->
-          })
+            @!input({
+              type: 'checkbox',
+              name: 'admin',
+              id: 'adminCheckbox',
+              class: 'h-5 w-5 text-black border-gray-300 rounded checked:bg-black checked:border-transparent focus:ring-0',
+              value: 'true',
+            })
 
-          <!-- Checkbox para Admin -->
-          @!input({
-            type: 'checkbox',
-            name: 'admin', 
-            id: 'adminCheckbox', 
-            class: 'h-5 w-5 text-black border-gray-300 rounded checked:bg-black checked:border-transparent focus:ring-0',
-            value: 'true', <!-- Valor enviado quando marcado -->
-          })
-
-          <label for="adminCheckbox" class="ml-2 block text-sm font-medium text-gray-700">
-            Tornar este usuário um Admin
-          </label>
-        </div>
-
-          
-          
-            
-            <!--
-          <div id="adminKeyField" class="hidden">
-            <label for="adminKey" class="block text-sm font-medium text-gray-700">
-              Chave de Administração
+            <label for="adminCheckbox" class="ml-2 block text-sm font-medium text-gray-700">
+              Tornar este usuário um Admin
             </label>
-            <div class="mt-1">
-              @!input({
-                type: 'password',
-                name: 'admin_key',
-                id: 'adminKey',
-              })
-            </div>
           </div>
-        -->
+
+          <!-- Campo de Senha -->
           <div>
             <label for="password" class="block text-sm font-medium text-gray-700">Senha</label>
             <div class="mt-1">
@@ -110,6 +97,8 @@
               })
             </div>
           </div>
+
+          <!-- Botão de Envio -->
           <div>
             @button({
               type: 'submit',
@@ -119,6 +108,7 @@
             @end
           </div>
         @end
+
         <div class="m-auto mt-6 w-fit md:mt-8">
           <span class="m-auto">
             Já possui conta?
@@ -133,17 +123,19 @@
     </div>
   </div>
 
-  <!-- Script para exibir/esconder o campo da chave de admin -->
+  <!-- Validação de Email com JavaScript -->
   <script>
     document.addEventListener('DOMContentLoaded', function () {
-      const adminCheckbox = document.getElementById('adminCheckbox');
-      const adminKeyField = document.getElementById('adminKeyField');
+      const form = document.getElementById('createUserForm');
+      const emailInput = form.querySelector('input[name="email"]');
 
-      adminCheckbox.addEventListener('change', function () {
-        if (this.checked) {
-          adminKeyField.classList.remove('hidden');
-        } else {
-          adminKeyField.classList.add('hidden');
+      form.addEventListener('submit', function (event) {
+        const emailRegex = /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$/;
+
+        if (!emailRegex.test(emailInput.value)) {
+          event.preventDefault(); // Impede o envio do formulário
+          alert('Por favor, insira um email válido.');
+          emailInput.focus();
         }
       });
     });

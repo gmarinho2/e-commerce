@@ -33,13 +33,13 @@
       <p class="text-sm text-neutral-500">implementar parcelamento</p>
 
       <div class="flex mt-4 text-primary-600 gap-4">
-        <a href="#" class="flex items-center gap-2">
-          <i class="material-symbols-outlined">smartphone</i> Provador Virtual
+        <a href="#sizeChart" class="flex items-center gap-2">
+          <i class="material-symbols-outlined">straighten</i> Tabela de Medidas
         </a>
       </div>
-        <div class="flex mt-4 text-primary-600 gap-4">
-        <a href="#" class="flex items-center gap-2">
-          <i class="material-symbols-outlined">straighten</i> Tabela de Medidas
+      <div class="flex mt-4 text-primary-600 gap-4">
+        <a href="#virtualFitting" class="flex items-center gap-2">
+          <i class="material-symbols-outlined">smartphone</i> Provador Virtual
         </a>
       </div>
 
@@ -55,7 +55,6 @@
           @endeach
         </div>
       </div>
-
 
       <div class="mt-8">
         <button class="bg-primary-600 hover:bg-primary-700 text-primary-50 font-bold rounded-md w-full py-2">
@@ -76,5 +75,108 @@
     </div>
   </div>
 
+  <!-- Tabela de Medidas -->
+  <div id="sizeChart" class="mt-8 mx-auto max-w-3xl bg-white rounded-xl p-6 shadow-lg">
+    <h2 class="text-2xl font-bold mb-4 text-center">Tabela de Medidas</h2>
+    <table class="w-full border-collapse border border-gray-300 text-sm text-left">
+      <thead class="bg-gray-100">
+        <tr>
+          <th class="border border-gray-300 px-4 py-2 text-gray-700">Tamanho</th>
+          <th class="border border-gray-300 px-4 py-2 text-gray-700">Altura (cm)</th>
+          <th class="border border-gray-300 px-4 py-2 text-gray-700">Largura (cm)</th>
+          <th class="border border-gray-300 px-4 py-2 text-gray-700">Manga (cm)</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="border border-gray-300 px-4 py-2">PP</td>
+          <td class="border border-gray-300 px-4 py-2">74</td>
+          <td class="border border-gray-300 px-4 py-2">45</td>
+          <td class="border border-gray-300 px-4 py-2">14</td>
+        </tr>
+        
+        <tr>
+          <td class="border border-gray-300 px-4 py-2">P</td>
+          <td class="border border-gray-300 px-4 py-2">76</td>
+          <td class="border border-gray-300 px-4 py-2">47</td>
+          <td class="border border-gray-300 px-4 py-2">15</td>
+        </tr>
+
+        <tr>
+          <td class="border border-gray-300 px-4 py-2">M</td>
+          <td class="border border-gray-300 px-4 py-2">77</td>
+          <td class="border border-gray-300 px-4 py-2">51</td>
+          <td class="border border-gray-300 px-4 py-2">17</td>
+        </tr>
+
+        <tr>
+          <td class="border border-gray-300 px-4 py-2">G</td>
+          <td class="border border-gray-300 px-4 py-2">79</td>
+          <td class="border border-gray-300 px-4 py-2">55</td>
+          <td class="border border-gray-300 px-4 py-2">20</td>
+        </tr>
+
+        <tr>
+          <td class="border border-gray-300 px-4 py-2">GG</td>
+          <td class="border border-gray-300 px-4 py-2">81</td>
+          <td class="border border-gray-300 px-4 py-2">60</td>
+          <td class="border border-gray-300 px-4 py-2">22</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Provador Virtual -->
+  <div id="virtualFitting" class="mt-8 mx-auto max-w-3xl bg-white rounded-xl p-6 shadow-lg">
+    <h2 class="text-2xl font-bold mb-4 text-center">Provador Virtual</h2>
+    <div class="space-y-6">
+      <!-- Tórax -->
+      <div>
+        <label for="chest" class="block text-sm font-medium text-gray-700">Tórax</label>
+        <input
+          id="chest"
+          type="range"
+          min="1"
+          max="5"
+          value="3"
+          class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer"
+        />
+      </div>
+
+      <!-- Cintura -->
+      <div>
+        <label for="waist" class="block text-sm font-medium text-gray-700">Cintura</label>
+        <input
+          id="waist"
+          type="range"
+          min="1"
+          max="5"
+          value="3"
+          class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer"
+        />
+        <p class="text-sm text-center mt-1">Ajuste: <span id="waistValue">3</span></p>
+      </div>
+
+      <!-- Quadril -->
+      <div>
+        <label for="hip" class="block text-sm font-medium text-gray-700">Quadril</label>
+        <input
+          id="hip"
+          type="range"
+          min="1"
+          max="5"
+          value="3"
+          class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer"
+        />
+        <p class="text-sm text-center mt-1">Ajuste: <span id="hipValue">3</span></p>
+      </div>
+    </div>
+
+    <div class="mt-8">
+      <p class="text-lg font-bold">Tamanho Recomendado: <span id="recommendedSize" class="text-primary-600">M</span></p>
+    </div>
+  </div>
+
+  <script src="../resources/js/provador.js" defer></script>
 
 @end
