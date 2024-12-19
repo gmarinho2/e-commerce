@@ -11,7 +11,7 @@ export default class extends BaseSchema {
       table.decimal('price', 10, 2).notNullable()
       table.integer('category_id').unsigned().notNullable().references('id').inTable('categories').onDelete('CASCADE')
       table.string('description')
-      table.integer('team_id').references('id').inTable('teams')
+      table.integer('team_id').unsigned().references('id').inTable('teams').onDelete('CASCADE')
       table.integer('stock')
       table.text('image_url').notNullable()
 
