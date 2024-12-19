@@ -18,6 +18,13 @@ export default class extends BaseSeeder {
         admin: true,
         teamId: 2, 
       },
+      {
+        fullName: 'Filipe Braida',
+        email: 'filipebraida@gmail.com',
+        password: '123', 
+        admin: true,
+        teamId: 2, 
+      },
     ])
   }
 }

@@ -24,10 +24,7 @@
 
 
     <div class="flex items-center justify-center shrink-0">
-      <!-- ADICIONAR PESQUISAAAAAAAAAAAAAAAAAAAAAAAAA
-        AAAAAAAAA
-      <form action="{ { route('search.results') }}" method="get" class="flex items-center space-x-2">-->
-      <form class="flex items-center space-x-2">
+      <form action="/search/result" method="get" class="flex items-center space-x-2">
         <input
           type="search"
           name="query"
@@ -35,7 +32,7 @@
           class="px-20 py-2 rounded-md text-black focus:outline-none focus:ring-2 focus:ring-green-500"
         />
         @button({
-          type:'submit',
+          type: 'submit',
           variant: 'default_header',
         })
           <i class="fa-solid fa-search"></i>

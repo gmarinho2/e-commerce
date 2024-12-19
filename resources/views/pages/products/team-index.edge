@@ -1,0 +1,18 @@
+@layouts.app()
+
+<main>
+    <div class="container mx-auto mt-6">
+        <h1 class="text-2xl font-semibold">Lista de Clubes</h1>
+        <div class="mt-6 space-y-4">
+            @each(team in teams)
+                <div class="border-b py-2">
+                    <a href="/team/{{ team.id }}" class="text-blue-600 hover:underline">
+                        {{ team.name }}
+                    </a>
+                </div>
+            @end
+        </div>
+    </div>
+</main>
+
+@end

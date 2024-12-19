@@ -6,23 +6,15 @@ export default class extends BaseSeeder {
     await Category.createMany([
       {
         id: 1,
-        name: 'Camisas',
+        name: 'Camisas Principais',
       },
       {
         id: 2,
-        name: 'Shorts',
+        name: 'Camisas Vintage',
       },
       {
         id: 3,
-        name: 'Jaquetas',
-      },
-      {
-        id: 4,
-        name: 'Acessórios',
-      },
-      {
-        id: 5,
-        name: 'Calçados',
+        name: 'Camisas Alternativas',
       },
     ])
   }

@@ -2,85 +2,80 @@
 
 <main>
     <div class="container mx-auto mt-6">
-      {{--  <div class="flex justify-center lg:justify-between items-center">
-        <div>
-          <a href="/" class="text-sm text-black">Home</a>| 
-          <a href="/products" class="text-sm text-black">Carrinho</a>
-        </div>  --}}
-
         @if(cart?.totalCount)
-          @each(product in cart.products)
-            <div class="flex items center">
-              <div>
-                <img
-                  src="{{ product.imageUrl }}"
-                  alt="{{ product.name }}"
-                  class="w-24 h-24 object-cover rounded-md shadow-lg"
-                />
-              </div>
-              <div class="ml-4">
-                <h3 class="text-lg font-semibold">
-                  {{ product.name }}
-                </h3>
-                  <p class="text-gray-600">
-                  R$ {{ product.price }}
-                </p>  
-                <p class="text-gray-600">
-                  {{ product.quantity }} unidades escolhidas para compra
-                </p> 
-              </div>
-              <div class="ml-4">
-                <button
-                  type="submit"
-                  class="bg-black text-white py-2 px-4 rounded-md"
-                  onclick="addCarrinho(event, {{ product.id }})"
-                >
-                  Adicionar Item
-                </button>
-                {{--  <input
-                  type="number"
-                  value="{{ product.quantity }}"
-                  class="w-12 h-12 text-center border border-gray-400"
-                />  --}}
-                <button
-                  type="submit"
-                  class="bg-black text-white py-2 px-4 rounded-md"
-                  onclick="removerCarrinho(event, {{ product.id }})"
-                >
-                  Remover Item
-                </button>
-                @if(product.quantity > product.stock)
-                  <p class="text-red-500">
-                    Estoque insuficiente
-                  </p>
-                @end
-              </div>
+          <div class="space-y-6"> 
+            @each(product in cart.products)
+                <div class="flex items-center justify-between border-b py-4">
+                    <div class="flex items-center">
+                        <img
+                            src="{{ product.imageUrl }}"
+                            alt="{{ product.name }}"
+                            class="w-24 h-24 object-cover rounded-md shadow-lg"
+                        />
+                        <div class="ml-4">
+                            <h3 class="text-lg font-semibold">
+                                {{ product.name }}
+                            </h3>
+                            <p class="text-gray-600">
+                                R$ {{ product.price }}
+                            </p>  
+                            <p class="text-gray-600">
+                                {{ product.quantity }} unidades escolhidas para compra
+                            </p> 
+                        </div>
+                    </div>
+
+                    <div class="flex items-center space-x-4"> <!-- Aumentado o espaço entre os botões -->
+                        <button
+                            type="submit"
+                            class="inline-flex items-center justify-center text-lg font-semibold py-3 px-6 rounded-md bg-green-800 text-white hover:bg-green-500/90 shadow-lg"
+                            onclick="addCarrinho(event, {{ product.id }})"
+                        >
+                            Adicionar Item
+                        </button>
+                        
+                        <button
+                            type="submit"
+                            class="inline-flex items-center justify-center text-lg font-semibold py-3 px-6 rounded-md bg-red-600 text-white hover:bg-red-500/90 shadow-2xl"
+                            onclick="removerCarrinho(event, {{ product.id }})"
+                        >
+                            Remover Item
+                        </button>
+
+                        @if(product.quantity > product.stock)
+                            <p class="text-red-500">
+                                Estoque insuficiente
+                            </p>
+                        @end
+                    </div>
+                </div>
             @end
-            
-            <div class="mt-6">
+          </div>
+
+          <div class="mt-6">
               <h2 class="text-2xl font-semibold">
-                Total: R$ {{ cart.totalPrice }}
+                  Total: R$ {{ cart.totalPrice }}
               </h2>
-            </div>
-            <div class="mt-6">
+          </div>
+
+          <div class="mt-6">
               @if(cart.products.some(product => product.quantity > product.stock))
-                <button type="submit" class="bg-gray-400 text-white py-2 px-4 rounded-md" disabled>
-                  Finalizar Compra
-                </button>
+                  <button type="submit" class="inline-flex items-center justify-center text-lg font-semibold py-3 px-6 rounded-md bg-gray-400 text-white" disabled>
+                      Finalizar Compra
+                  </button>
               @else
-                <button type="submit" class="bg-black text-white py-2 px-4 rounded-md" onclick="checkout(event)">
-                  Finalizar Compra
-                </button>
+                  <button type="submit" class="inline-flex items-center justify-center text-lg font-semibold py-3 px-6 rounded-md bg-green-800 text-white hover:bg-green-500/90 shadow-lg" onclick="checkout(event)">
+                      Finalizar Compra
+                  </button>
               @end
-            </div>
-          @else
+          </div>
+
+        @else
             <p>
               Carrinho vazio
             </p>
-          @end
-            
-        </div>
-      </div>
-    </main>
+        @end
+    </div>
+</main>
 
 @end

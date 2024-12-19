@@ -7,7 +7,7 @@ import { request } from 'http'
 export default class ProductsController {
     async index({ view, request }: HttpContext) {
       const page = request.input('page', 1)
-      const max_size = 10
+      const max_size = 50
   
       const payload = request.only(['name'])
   
@@ -48,13 +48,9 @@ export default class ProductsController {
 
       const payload = request.only(['name', 'price', 'description', 'categoryId', 'imageUrl', 'stock'])
     
-    product.merge(payload)
-    
-   
+    product.merge(payload) 
       await product.save()
-    
-     
-      return response.redirect().toRoute('products.show', { id: product.id })  
+      return response.redirect().toRoute('products.stock', { id: product.id })  
     }
     
   
