@@ -1,4 +1,4 @@
-@layouts.app()
+{{--  @layouts.app()  --}}
 {{--  @include('pages/products/partials/products')  --}}
 <div>
     
@@ -610,19 +610,20 @@
   </head>
   <body>
   <div id="webcrumbs">
+    {{--  <div><a class="flex gap-10 text-lg justify-center text-primary-950 hover:text-primary-700 cursor-pointer transition-colors relative after:content-[&#x27;&#x27;] hover:after:w-full">Produtos</a>
+    </div>  --}}
     <div class="w-[1200px] min-h-[800px] bg-white rounded-lg shadow-lg p-10 relative overflow-hidden">  <div class="absolute top-[-50px] right-[-100px] w-[300px] h-[300px] bg-primary-600 opacity-30 blur-[150px] rounded-full"></div><div class="absolute bottom-[-50px] left-[-100px] w-[300px] h-[300px] bg-primary-700 opacity-20 blur-[150px] rounded-full"></div>
     <header class="flex justify-center items-center mb-10 relative z-10"><h1 class="text-5xl font-title text-primary-950">Bem-vindo(a)</h1><nav><ul class="flex gap-10 text-lg">
-      {{--  <li class="text-primary-950 hover:text-primary-700 cursor-pointer transition-colors relative after:content-[&#x27;&#x27;] after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-primary-600 after:transition-all hover:after:w-full">Home</li>
-      <li class="text-primary-950 hover:text-primary-700 cursor-pointer transition-colors relative after:content-[&#x27;&#x27;] after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-primary-600 after:transition-all hover:after:w-full">Produtos</li>
-      <li class="text-primary-950 hover:text-primary-700 cursor-pointer transition-colors relative after:content-[&#x27;&#x27;] after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-primary-600 after:transition-all hover:after:w-full">Sobre</li>
+      {{--  <li class="text-primary-950 hover:text-primary-700 cursor-pointer transition-colors relative after:content-[&#x27;&#x27;] after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-primary-600 after:transition-all hover:after:w-full">Home</li>  --}}
+      {{--  <li class="text-primary-950 hover:text-primary-700 cursor-pointer transition-colors relative after:content-[&#x27;&#x27;] after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-primary-600 after:transition-all hover:after:w-full">Produtos</li>  --}}
+      {{--  <li class="text-primary-950 hover:text-primary-700 cursor-pointer transition-colors relative after:content-[&#x27;&#x27;] after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-primary-600 after:transition-all hover:after:w-full">Sobre</li>
       <li class="text-primary-950 hover:text-primary-700 cursor-pointer transition-colors relative after:content-[&#x27;&#x27;] after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-primary-600 after:transition-all hover:after:w-full">Contato</li>  --}}
       </ul></nav></header>
       <section class="grid grid-cols-2 gap-10 items-center relative z-10"><div class="flex flex-col justify-center"><h2 class="text-4xl mb-2 font-title text-primary-950">Encontre os melhores produtos</h2><p class="text-xl text-neutral-950 mb-6">Aqui você encontra uma seleção incrível de roupas de times e com os melhores preços. Aproveite nossas promoções e torne sua experiência de compra inesquecível.</p>
-        <div 
-        class="bg-gradient-to-r from-primary-500 to-primary-700 p-1 rounded-full inline-block shadow-lg hover:scale-105 transition-all">
-        {{--  <button class=" bg-primary-600 hover:bg-primary-700 text-primary-50 py-3 px-8 rounded-full w-[200px] transition-all">Confira Agora</button>  --}}
-
-        <a href="{{ route('products.index') }}" class="inline-block justify-center items-center w-full py-2 mx-0 ml-6 font-medium text-center text-black md:ml-0 md:w-auto md:px-0 md:mx-2 lg:mx-3">
+      <div 
+        class=" justify-center items-center w-full bg-gradient-to-r from-primary-500 to-primary-700 p-1 rounded-full inline-block shadow-lg hover:scale-105 transition-all">
+        <a href="{{ route('products.index') }}" 
+          class="justify-center items-center mt-15 flex justify-center space-x-8 relative z-10">
           Confira Agora
         </a>        
       </div>
@@ -632,4 +633,4 @@
   </div>
   </body>
   </div>
-@end
+{{--  @end  --}}
