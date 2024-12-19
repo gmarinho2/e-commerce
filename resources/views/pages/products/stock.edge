@@ -1,0 +1,82 @@
+@layouts.app()
+
+<div class="max-w-full w-full justify-center bg-white rounded-xl p-6 shadow-2xl mx-auto mt-6">
+  <!-- Lista de Produtos -->
+
+  <div class="flex items-center space-x-4 mt-6">
+    <h1 class="text-2xl font-bold text-neutral-900 mb-4">Lista de Produtos</h1>
+    
+    @button({
+        type: 'submit',
+        variant: 'default',
+        href: route('products.create'),
+      })
+        Criar produto
+    @end
+  </div>
+  
+
+  <table class="w-full border-collapse border border-gray-300 text-sm text-left">
+    <thead class="bg-gray-100">
+      <tr>
+        <th class="border border-gray-300 px-4 py-2 text-gray-700">Nome</th>
+        <th class="border border-gray-300 px-4 py-2 text-gray-700">Preço</th>
+        <th class="border border-gray-300 px-4 py-2 text-gray-700">Estoque</th>
+        <th class="border border-gray-300 px-4 py-2 text-gray-700">Ações</th>
+      </tr>
+    </thead>
+    <tbody>
+        @each(product in products)
+        <tr>
+          <td class="border border-gray-300 px-4 py-2">{{ product.name }}</td>
+          <td class="border border-gray-300 px-4 py-2">R$ {{ product.price }}</td>
+          <td class="border border-gray-300 px-4 py-2">{{ product.stock }}</td>
+          <td class="border border-gray-300 px-4 py-2">
+            <!-- Remover uma unidade do estoque -->
+            <div class="w-full h-full justify-between space-x-3">
+            <form action="{{ route('products.removeStock', product.id) }}" method="POST" class="inline-block">
+                @csrf
+                @method('PUT')
+                @button({
+                    type: 'submit',
+                    variant: 'default',
+                    href: route('products.stock'),
+                  })
+                    Alterar Estoque
+                  @end
+            </form>
+                
+            <br>
+            <!-- Editar Produto -->
+            <div class="mt-6">
+                @button({
+                    type: 'submit',
+                    variant: 'default',
+                    href: route('products.patch', { id: product.id }),
+                  })
+                    Editar
+                  @end
+              </div>
+
+            <!-- Excluir Produto -->
+            <form action="{{ route('products.destroy', { id: product.id }) }}" method="POST" class="inline-block">
+                @csrf
+                @method('DELETE')
+                @button({
+                    type: 'submit',
+                    variant: 'destructive',
+                  })
+                    Deletar
+                  @end
+              </div>
+            </form>
+          </td>
+        </tr>
+      @endeach
+      
+    </tbody>
+  </table>
+
+</div>
+
+@end

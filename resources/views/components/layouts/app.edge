@@ -2,8 +2,13 @@
 <html>
   <head>
     <title>Sem Clubismo Store</title>
-    @vite(['resources/js/app.js', 'resources/js/sidebar.js', 'resources/css/app.css', 'resources/css/email.js'])
+
+    <link rel="icon" href="icon_path" type="image/icon type">
+    @vite(['resources/js/app.js', 'resources/js/provador.js', 'resources/js/sidebar.js', 'resources/css/app.css'])
+
     @vite(['resources/js/cart.js'])
+
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
@@ -16,11 +21,11 @@
     <link href="https://fonts.googleapis.com/css2?family=Lato&display=swap" rel="stylesheet">
   </head>
   <body>
-    <!-- Incluindo o cabeçalho -->
+
     @include('components/layouts/partials/header')
 
 
-    <!-- Incluindo a aba lateral -->
+    <!-- aba lateral -->
     
     <section class="w-full px-6 pt-6 pb-12 antialiased bg-white">
       <div class="mx-auto max-w-7xl">
