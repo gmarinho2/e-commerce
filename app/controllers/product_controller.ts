@@ -2,6 +2,7 @@ import { HttpContext } from '@adonisjs/core/http'
 
 import Product from '#models/product'
 import Category from "#models/category"
+import { request } from 'http'
 
 export default class ProductsController {
     async index({ view, request }: HttpContext) {
@@ -68,9 +69,19 @@ export default class ProductsController {
   
       return response.redirect().toRoute('products.stock', { id: product.id }) // Redireciona para a página de gerenciamento de estoque
     }
+
+    async removeStock({ params, response }: HttpContext) {
+      const product = await Product.findOrFail(params.id)
+  
+      product.stock -= 1 // Aumenta o estoque em 1
+      await product.save()
+  
+      return response.redirect().toRoute('products.stock', { id: product.id }) // Redireciona para a página de gerenciamento de estoque
+    }
     
-    async stock({ view }: HttpContext) {  
-      return view.render('pages/products/stock')
+    async stock({ view }: HttpContext) { 
+      const products = await Product.all() 
+      return view.render('pages/products/stock', {products})
     }
 }
 

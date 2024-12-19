@@ -1,9 +1,21 @@
 @layouts.app()
 
-<div class="max-w-full w-full bg-white rounded-xl p-6 shadow-2xl mx-auto mt-6">
+<div class="max-w-full w-full justify-center bg-white rounded-xl p-6 shadow-2xl mx-auto mt-6">
   <!-- Lista de Produtos -->
-  <h1 class="text-2xl font-bold text-neutral-900 mb-4">Lista de Produtos</h1>
+
+  <div class="flex items-center space-x-4 mt-6">
+    <h1 class="text-2xl font-bold text-neutral-900 mb-4">Lista de Produtos</h1>
+    
+    @button({
+        type: 'submit',
+        variant: 'default',
+        href: route('products.create'),
+      })
+        Criar produto
+    @end
+  </div>
   
+
   <table class="w-full border-collapse border border-gray-300 text-sm text-left">
     <thead class="bg-gray-100">
       <tr>
@@ -14,40 +26,57 @@
       </tr>
     </thead>
     <tbody>
-      @each(product in products.data)
+        @each(product in products)
         <tr>
           <td class="border border-gray-300 px-4 py-2">{{ product.name }}</td>
           <td class="border border-gray-300 px-4 py-2">R$ {{ product.price }}</td>
           <td class="border border-gray-300 px-4 py-2">{{ product.stock }}</td>
           <td class="border border-gray-300 px-4 py-2">
             <!-- Remover uma unidade do estoque -->
+            <div class="w-full h-full justify-between space-x-3">
             <form action="{{ route('products.removeStock', product.id) }}" method="POST" class="inline-block">
-              @csrf
-              @method('PATCH')
-              <button type="submit" class="text-red-500 hover:text-red-700">Remover 1 do estoque</button>
+                @csrf
+                @method('PUT')
+                @button({
+                    type: 'submit',
+                    variant: 'default',
+                    href: route('products.stock'),
+                  })
+                    Alterar Estoque
+                  @end
             </form>
+                
             <br>
             <!-- Editar Produto -->
-            <a href="{{ route('products.edit', product.id) }}" class="text-blue-500 hover:text-blue-700">Editar</a>
-            <br>
+            <div class="mt-6">
+                @button({
+                    type: 'submit',
+                    variant: 'default',
+                    href: route('products.patch', { id: product.id }),
+                  })
+                    Editar
+                  @end
+              </div>
+
             <!-- Excluir Produto -->
-            <form action="{{ route('products.destroy', product.id) }}" method="POST" class="inline-block">
-              @csrf
-              @method('DELETE')
-              <button type="submit" class="text-red-500 hover:text-red-700">Excluir</button>
+            <form action="{{ route('products.destroy', { id: product.id }) }}" method="POST" class="inline-block">
+                @csrf
+                @method('DELETE')
+                @button({
+                    type: 'submit',
+                    variant: 'destructive',
+                  })
+                    Deletar
+                  @end
+              </div>
             </form>
           </td>
         </tr>
       @endeach
+      
     </tbody>
   </table>
 
-  <!-- Adicionar Novo Produto -->
-  <div class="mt-6">
-    <a href="{{ route('products.create') }}" class="bg-primary-600 hover:bg-primary-700 text-white font-bold rounded-md w-full py-2 text-center inline-block">
-      Adicionar Novo Produto
-    </a>
-  </div>
 </div>
 
 @end
