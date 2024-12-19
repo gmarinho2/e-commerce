@@ -59,6 +59,19 @@ export default class ProductsController {
   
       return { sucess: `${params.id} removido`}
     }
+
+    async addStock({ params, response }: HttpContext) {
+      const product = await Product.findOrFail(params.id)
+  
+      product.stock += 1 // Aumenta o estoque em 1
+      await product.save()
+  
+      return response.redirect().toRoute('products.stock', { id: product.id }) // Redireciona para a página de gerenciamento de estoque
+    }
+    
+    async stock({ view }: HttpContext) {  
+      return view.render('pages/products/stock')
+    }
 }
 
 // export default class ProductsController {
