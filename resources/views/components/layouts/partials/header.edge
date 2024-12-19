@@ -1,3 +1,4 @@
+@vite(['resources/js/cart.js'])
 <nav class="relative z-50 h-24 select-none bg-[#0FBC5A]">
   <div class="container relative flex items-center justify-between h-24 mx-auto overflow-hidden font-medium border-b border-green-600 md:overflow-visible lg:justify-between sm:px-4 md:px-2 lg:px-2">
     
@@ -82,13 +83,31 @@
           @end
         </div>
       @endif
-      <div class="flex space-x-2"> 
+      {{--  <div class="flex space-x-2"> 
         @button({
           href: route('cart.index'),
           variant: 'default_header'
         })
           Carrinho
         @end
+    </div>  --}}
+    <div>
+      <a href="/carrinho/" class="relative" aria-label="Meu carrinho">
+        <svg width="16" height="21" viewBox="0 0 16 21" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path
+            d="M16 17.3554L14.8477 4.36891C14.8269 4.11192 14.6114 3.9171 14.3503 3.9171H11.9212C11.9171 1.75751 10.1596 0 8 0C5.84041 0 4.0829 1.75751 4.07876 3.9171H1.64974C1.39275 3.9171 1.1772 4.11192 1.15233 4.36891L0 17.3554C0 17.372 0 17.3845 0 17.401C0 18.8477 1.33057 20.0249 2.96373 20.0249H13.0363C14.6694 20.0249 16 18.8477 16 17.401C16 17.3845 16 17.372 16 17.3554ZM8 0.994819C9.61244 0.994819 10.9223 2.30466 10.9264 3.9171H5.07357C5.07772 2.30466 6.38756 0.994819 8 0.994819ZM13.0363 19.0259H2.96373C1.88601 19.0259 1.00725 18.3088 0.994819 17.4176L2.1057 4.91192H4.07876V6.65699C4.07876 6.93057 4.30259 7.1544 4.57617 7.1544C4.84974 7.1544 5.07357 6.93057 5.07357 6.65699V4.91192H10.9264V6.65699C10.9264 6.93057 11.1503 7.1544 11.4238 7.1544C11.6974 7.1544 11.9212 6.93057 11.9212 6.65699V4.91192H13.8943L15.0052 17.4218C14.9927 18.3088 14.114 19.0259 13.0363 19.0259Z"
+            fill="#1D1D1B"
+          />
+
+        </svg>
+        <span
+          id="cart-qty-label"
+          class="absolute bg-black text-white flex items-center justify-center rounded-full min-w-[18px] min-h-[18px] text-xs -top-[9px] -right-[13px]"
+        >
+          {{ cart?.totalCount ?? 0 }}
+        </span>
+      </a>
+
     </div>
 
   </div>

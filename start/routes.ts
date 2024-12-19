@@ -54,8 +54,10 @@ router.group(()=>{
 
 router.get('/categories/:id', [CategoryController, 'show']).as('categories.show')
 
-// router.get('/Cart', [CartsController, 'show']).as('cart.show')
-
 router.group(() => {
-    router.get('/', [CartsController, 'index']).as('index').use(middleware.auth())
-}).prefix('cart').as('cart')
+        router.get('/', [CartsController, 'index']).use(middleware.auth()).as('index')
+        router.post('adicionar', [CartsController, 'addCarrinho']).as('addCarrinho')
+        router.post('remover', [CartsController, 'removerCarrinho']).as('removerCarrinho')
+        router.post('cart_finalizar', [CartsController, 'checkout']).as('checkout')
+        router.delete('limpar', [CartsController, 'limparCarrinho']).as('limparCarrinho')
+}).prefix('carrinho').as('carrinho')
