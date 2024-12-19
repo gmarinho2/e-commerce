@@ -2,13 +2,13 @@
 <div class="flex min-h-[80vh] flex-col justify-center py-12 sm:px-6 lg:px-8">
   <div class="text-center sm:mx-auto sm:w-full sm:max-w-md">
     <h1 class="text-3xl font-bold text-gray-900">
-      Criar Produto
+      Editar Produto
     </h1>
   </div>
   <div class="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
     <div class="bg-white px-4 pb-4 pt-8 sm:rounded-lg sm:px-10 sm:pb-6">
       @form({
-        action: route('products.store'), 
+        action: route('products.patch', { id: product.id }),
         method: 'POST',
         class: 'space-y-6',
       })
@@ -22,6 +22,7 @@
               name: 'name',
               required: true,
               placeholder: 'Digite o nome do produto',
+              value: product.name
             })
           </div>
         </div>
@@ -35,6 +36,7 @@
               name: 'price',
               required: true,
               placeholder: 'Digite o preço do produto',
+              value: product.price
             })
           </div>
         </div>
@@ -48,10 +50,10 @@
               name: 'description',
               required: true,
               placeholder: 'Breve descrição',
+              value: product.description
             })
           </div>
         </div>
-
 
         <div>
           <label for="categoryId" class="block text-sm font-medium text-gray-700">
@@ -59,25 +61,11 @@
           </label>
           <div class="mt-1">
             @!input({
-              type: 'number',  <!-- Supondo que seja um número para o ID -->
-              name: 'categoryId',  <!-- Refere-se ao campo no modelo -->
+              type: 'number',
+              name: 'categoryId',
               required: true,
               placeholder: 'Informe o ID da categoria',
-            })
-          </div>
-        </div>
-
-
-        <div>
-          <label for="teamId" class="block text-sm font-medium text-gray-700">
-            Time
-          </label>
-          <div class="mt-1">
-            @!input({
-              type: 'number',  <!-- Supondo que seja um número para o ID -->
-              name: 'teamId',  <!-- Refere-se ao campo no modelo -->
-              required: true,
-              placeholder: 'Informe o ID do time',
+              value: product.categoryId
             })
           </div>
         </div>
@@ -89,34 +77,35 @@
           <div class="mt-1">
             @!input({
               type: 'text',  
-              name: 'imageUrl',  <!-- Refere-se ao campo no modelo -->
+              name: 'imageUrl',
               required: true,
               placeholder: 'Informe a URL da Imagem',
-            })
-          </div>
-        </div>
-        
-        <div>
-          <label for="stock" class="block text-sm font-medium text-gray-700">
-            Estoque
-          </label>
-          <div class="mt-1">
-            @!input({
-              type: 'number',  <!-- Supondo que seja um número para o ID -->
-              name: 'stock',  <!-- Refere-se ao campo no modelo -->
-              required: true,
-              placeholder: 'Informe o ID da categoria',
+              value: product.imageUrl
             })
           </div>
         </div>
 
+        <div>
+          <label for="stock" class="block text-sm font-medium text-gray-700">
+            Quantidade em Estoque
+          </label>
+          <div class="mt-1">
+            @!input({
+              type: 'number',  
+              name: 'stock',
+              required: true,
+              placeholder: 'Informe a quantidade em estoque',
+              value: product.stock
+            })
+          </div>
+        </div>
 
         <div>
           @button({
             type: 'submit',
             class: 'w-full',
           })
-            Criar Produto
+            Atualizar Produto
           @end
         </div>
       @end

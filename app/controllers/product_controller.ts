@@ -42,17 +42,29 @@ export default class ProductsController {
       return view.render('pages/products/create', { categories })
     }
   
-    async patch({ params, request}: HttpContext) {
+    async patch({ params, request, response }: HttpContext) {
+     
       const product = await Product.findOrFail(params.id)
-  
-      const payload = request.only(['name', 'price', 'description', 'categoryId', 'imageUrl'])
-      product.merge(payload)
-  
+
+      const payload = request.only(['name', 'price', 'description', 'categoryId', 'imageUrl', 'stock'])
+    
+    product.merge(payload)
+    
+   
       await product.save()
-  
-      return product
+    
+     
+      return response.redirect().toRoute('products.show', { id: product.id })  
     }
+    
   
+    async edit({ params, view }: HttpContext) {
+      const product = await Product.findOrFail(params.id) // Encontrar o produto pelo ID
+      
+      return view.render('pages/products/edit', { product }) // Retorna a página de edição
+    }
+    
+
     async destroy({ params }: HttpContext) {
       const product = await Product.findOrFail(params.id)
   
@@ -81,7 +93,7 @@ export default class ProductsController {
     
     async stock({ view }: HttpContext) { 
       const products = await Product.all() 
-      return view.render('pages/products/stock', {products})
+      return view.render('pages/products/stock', { products })
     }
 }
 

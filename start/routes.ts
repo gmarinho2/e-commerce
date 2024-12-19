@@ -42,16 +42,27 @@ router.group(()=>{
     router.get('/:id', [ProductsController, 'show']).where('id', router.matchers.number()).as('show')
 }).prefix('guest/products').as('guest')
 
-router.group(()=>{
-    router.get('/', [ProductsController, 'index']).use(middleware.auth()).as('index')
-    router.get('/new', [ProductsController, 'create']).use(middleware.auth()).as('create')
-    router.get('/:id', [ProductsController, 'show']).where('id', router.matchers.number()).use(middleware.auth()).as('show')
-    router.post('/', [ProductsController, 'store']).use(middleware.auth()).as('store')
-    router.delete('/:id', [ProductsController, 'destroy']).where('id', router.matchers.number()).use(middleware.auth()).as('destroy')
-    router.patch('/:id', [ProductsController, 'patch']).where('id', router.matchers.number()).use(middleware.auth()).as('patch')
-    router.get('/stock', [ProductsController, 'stock']).use(middleware.auth()).as('stock')
+router.group(() => {
+  // Listagem de produtos
+  router.get('/', [ProductsController, 'index']).use(middleware.auth()).as('index')
+  router.get('/new', [ProductsController, 'create']).use(middleware.auth()).as('create')
+  router.get('/:id', [ProductsController, 'show']).where('id', router.matchers.number()).use(middleware.auth()).as('show')
+  
+  // Adiciona o método PUT ou PATCH para edição
+  router.post('/:id', [ProductsController, 'patch']).where('id', router.matchers.number()).use(middleware.auth()).as('patch')  // Correção de rota para edição
+  
+  router.post('/', [ProductsController, 'store']).use(middleware.auth()).as('store')
+  router.delete('/:id', [ProductsController, 'destroy']).where('id', router.matchers.number()).use(middleware.auth()).as('destroy')
+  router.get('/:id/edit', [ProductsController, 'edit']).use(middleware.auth()).as('edit')
 
+  // Rota para a ação de estoque (aumentar/remover estoque)
+  router.put('/:id/stock', [ProductsController, 'removeStock']).where('id', router.matchers.number()).use(middleware.auth()).as('removeStock')
+  router.put('/:id/stock/add', [ProductsController, 'addStock']).where('id', router.matchers.number()).use(middleware.auth()).as('addStock')
+  router.get('/stock', [ProductsController, 'stock']).use(middleware.auth()).as('stock')
 }).prefix('products').as('products')
+
+
+
 
 router.get('/categories/:id', [CategoryController, 'show']).as('categories.show')
 

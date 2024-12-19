@@ -3,10 +3,9 @@ import hash from '@adonisjs/core/services/hash'
 import { compose } from '@adonisjs/core/helpers'
 import { BaseModel, column, hasOne } from '@adonisjs/lucid/orm'
 import { withAuthFinder } from '@adonisjs/auth/mixins/lucid'
-import Clube from '#models/team'
+import Team from '#models/team'
 
 import type { HasOne } from '@adonisjs/lucid/types/relations'
-import Team from './team.js'
 
 const AuthFinder = withAuthFinder(() => hash.use('scrypt'), {
   uids: ['email'],
