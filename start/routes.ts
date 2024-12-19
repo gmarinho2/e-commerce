@@ -49,6 +49,7 @@ router.group(()=>{
     router.post('/', [ProductsController, 'store']).use(middleware.auth()).as('store')
     router.delete('/:id', [ProductsController, 'destroy']).where('id', router.matchers.number()).use(middleware.auth()).as('destroy')
     router.patch('/:id', [ProductsController, 'patch']).where('id', router.matchers.number()).use(middleware.auth()).as('patch')
+    router.get('/stock', [ProductsController, 'stock']).use(middleware.auth()).as('stock')
 
 }).prefix('products').as('products')
 

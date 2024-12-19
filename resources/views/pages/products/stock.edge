@@ -1,0 +1,53 @@
+@layouts.app()
+
+<div class="max-w-full w-full bg-white rounded-xl p-6 shadow-2xl mx-auto mt-6">
+  <!-- Lista de Produtos -->
+  <h1 class="text-2xl font-bold text-neutral-900 mb-4">Lista de Produtos</h1>
+  
+  <table class="w-full border-collapse border border-gray-300 text-sm text-left">
+    <thead class="bg-gray-100">
+      <tr>
+        <th class="border border-gray-300 px-4 py-2 text-gray-700">Nome</th>
+        <th class="border border-gray-300 px-4 py-2 text-gray-700">Preço</th>
+        <th class="border border-gray-300 px-4 py-2 text-gray-700">Estoque</th>
+        <th class="border border-gray-300 px-4 py-2 text-gray-700">Ações</th>
+      </tr>
+    </thead>
+    <tbody>
+      @each(product in products.data)
+        <tr>
+          <td class="border border-gray-300 px-4 py-2">{{ product.name }}</td>
+          <td class="border border-gray-300 px-4 py-2">R$ {{ product.price }}</td>
+          <td class="border border-gray-300 px-4 py-2">{{ product.stock }}</td>
+          <td class="border border-gray-300 px-4 py-2">
+            <!-- Remover uma unidade do estoque -->
+            <form action="{{ route('products.removeStock', product.id) }}" method="POST" class="inline-block">
+              @csrf
+              @method('PATCH')
+              <button type="submit" class="text-red-500 hover:text-red-700">Remover 1 do estoque</button>
+            </form>
+            <br>
+            <!-- Editar Produto -->
+            <a href="{{ route('products.edit', product.id) }}" class="text-blue-500 hover:text-blue-700">Editar</a>
+            <br>
+            <!-- Excluir Produto -->
+            <form action="{{ route('products.destroy', product.id) }}" method="POST" class="inline-block">
+              @csrf
+              @method('DELETE')
+              <button type="submit" class="text-red-500 hover:text-red-700">Excluir</button>
+            </form>
+          </td>
+        </tr>
+      @endeach
+    </tbody>
+  </table>
+
+  <!-- Adicionar Novo Produto -->
+  <div class="mt-6">
+    <a href="{{ route('products.create') }}" class="bg-primary-600 hover:bg-primary-700 text-white font-bold rounded-md w-full py-2 text-center inline-block">
+      Adicionar Novo Produto
+    </a>
+  </div>
+</div>
+
+@end
